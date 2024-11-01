@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllNotice from "./Components/AllNotice";
-import CreateNotice from './Components/CreateNotice';
+import CreateNotice from "./Components/CreateNotice";
 
 function App() {
   return (

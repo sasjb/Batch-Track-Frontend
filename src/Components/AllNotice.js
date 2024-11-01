@@ -1,105 +1,104 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const AllNotice = () => {
-    const [notices, setNotices] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const navigate = useNavigate();
+  const noticeApi = "http://localhost:5000/api/notice/all-notice"; // API endpoint for fetching notices
+  const [notices, setNotices] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null); // State to manage error messages
 
-    // Fetch notices from API
-    useEffect(() => {
-        const fetchNotices = async () => {
-            try {
-                const response = await axios.get("http://localhost:5000/api/notice");
-                setNotices(response.data);
-            } catch (err) {
-                setError("Failed to fetch notices.");
-                toast.error("Error loading notices.");
-                console.error(err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchNotices();
-    }, []);
-
-    const deleteNotice = (id) => {
-        if (window.confirm("Are you sure you want to delete?")) {
-            axios
-                .delete(`http://localhost:5000/api/notice/all-notice`)
-                .then(() => {
-                    setNotices(notices.filter((notice) => notice.id !== id));
-                    toast.success("Notice deleted successfully.");
-                })
-                .catch((err) => {
-                    toast.error("Failed to delete notice.");
-                    console.error(err);
-                });
+  // Fetch notices from the API
+  useEffect(() => {
+    const fetchNotices = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(noticeApi);
+        console.log("Notices fetched:", response.data);
+        // Ensure response data is an array before setting it to state
+        if (Array.isArray(response.data)) {
+          setNotices(response.data);
+        } else {
+          setError("Unexpected data format.");
         }
+      } catch (err) {
+        console.error(err);
+        setError("Failed to fetch notices.");
+      } finally {
+        setIsLoading(false);
+      }
     };
 
-    const handleCreateNotice = () => {
-        navigate("/create-notice");
-    };
+    fetchNotices();
+  }, []);
 
-    return (
-        <>
-            <div className="container">
-                <div className="row py-4">
-                    <div className="col-md-6">
-                        <h3>Notices</h3>
-                    </div>
-                    <div className="col-md-6 text-end">
-                        <button onClick={handleCreateNotice} className="btn btn-primary">Create Notice</button>
-                    </div>
-                </div>
-                <div className="card border-0 shadow p-3">
-                    {loading ? (
-                        <div className="text-center">
-                            <div className="spinner-border text-primary" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </div>
-                        </div>
-                    ) : error ? (
-                        <p className="text-danger">{error}</p>
-                    ) : notices.length === 0 ? (
-                        <p className="text-muted">No notices available. Click "Create Notice" to add one.</p>
-                    ) : (
-                        <table className="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Author</th>
-                                    <th width="150">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {notices.map((notice, index) => (
-                                    <tr key={notice.id}>
-                                        <td>{index + 1}</td>
-                                        <td>{notice.id}</td>
-                                        <td>{notice.title}</td>
-                                        <td>{notice.description}</td>
-                                        <td>{notice.author}</td>
-                                        <td>
-                                            <button onClick={() => deleteNotice(notice.id)} className="btn btn-danger ms-1">Delete</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    )}
-                </div>
-            </div>
-        </>
-    );
+  // Delete notice function
+  const handleDelete = async (id) => {
+    setIsLoading(true);
+    try {
+      const response = await fetch(`${noticeApi}/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete notice");
+      }
+      setNotices(notices.filter((notice) => notice.id !== id));
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (isLoading) {
+    return <h1>Loading...</h1>; // Show loading state
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>; // Show error message if any
+  }
+
+  if (notices.length === 0) {
+    return <h1>No notices found</h1>; // Message for no notices
+  }
+
+  return (
+    <div className="mt-5">
+      <h2>All Notices</h2>
+      <Link to="/create-notice" className="btn btn-primary mb-3">Create Notice</Link>
+      <table className="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {notices.map((notice) => (
+            <tr key={notice.id}>
+              <td>{notice.id}</td>
+              <td>{notice.title}</td>
+              <td>{notice.description}</td>
+              <td>{notice.author}</td>
+              <td>
+                <Link to={`/edit-notice/${notice.id}`}>
+                  <i className="fa fa-pencil" aria-hidden="true"></i>
+                </Link>
+                <i
+                  className="fa fa-trash-o"
+                  aria-hidden="true"
+                  onClick={() => handleDelete(notice.id)}
+                ></i>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default AllNotice;

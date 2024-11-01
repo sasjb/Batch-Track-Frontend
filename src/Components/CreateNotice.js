@@ -32,14 +32,16 @@ const CreateNotice = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const formSubmit = async (data) => {
-    axios.post("http://localhost:5000/api/notice/create", data)
-      .then((res) => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/notice/create", data);
+      if (response.status === 201) {
         toast.success("Notice created successfully!");
-      })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Failed to create notice.");
-      });
+      }
+    } catch (err) {
+      // Improved error logging
+      console.error("Error details:", err.response ? err.response.data : err);
+      toast.error("Failed to create notice. Please check the fields and try again.");
+    }
   };
 
   return (
@@ -59,7 +61,7 @@ const CreateNotice = () => {
                   type={data.type}
                   placeholder={data.placeholder}
                   {...register(data.name, { required: data.required })}
-                  className={`form-control ${errors[data.name] && 'is-invalid'}`}
+                  className={`form-control ${errors[data.name] ? 'is-invalid' : ''}`}
                 />
                 {errors[data.name] && <p className="invalid-feedback">This field is required</p>}
               </div>
