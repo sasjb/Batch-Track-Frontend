@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { addUser } from '../api/userApi';
+import {Button, Container} from "react-bootstrap";
+import {toast} from "react-toastify";
 
 const AddUser = () => {
     const [formData, setFormData] = useState({ name: '', email: '', phone: '', homeDistrict: '', photo: '' });
@@ -10,21 +12,25 @@ const AddUser = () => {
         e.preventDefault();
         try {
             await addUser(formData);
-            alert('User added successfully');
+            toast.success("User added successfully");
         } catch (error) {
+            toast.error("Error adding user:");
             console.error('Error adding user', error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input name="name" onChange={handleChange} placeholder="Name" required />
-            <input name="email" onChange={handleChange} placeholder="Email" required />
-            <input name="phone" onChange={handleChange} placeholder="Phone" required />
-            <input name="homeDistrict" onChange={handleChange} placeholder="Home District" required />
-            <input name="photo" onChange={handleChange} placeholder="Photo URL" required />
-            <button type="submit">Add User</button>
-        </form>
+        <Container>
+            <form onSubmit={handleSubmit}>
+                <input name="name" className="form-control mt-3" onChange={handleChange} placeholder="Name" required/>
+                <input name="email" className="form-control mt-3" onChange={handleChange} placeholder="Email" required/>
+                <input name="phone" className="form-control mt-3" onChange={handleChange} placeholder="Phone" required/>
+                <input name="homeDistrict" className="form-control mt-3" onChange={handleChange} placeholder="Home District"
+                       required/>
+                <input name="photo" className="form-control mt-2" onChange={handleChange} placeholder="Photo URL" required/>
+                <Button type="submit" variant="outline-dark" className="mt-3">Add User</Button>
+            </form>
+        </Container>
     );
 };
 
