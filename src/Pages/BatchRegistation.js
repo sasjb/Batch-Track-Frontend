@@ -84,9 +84,9 @@ const BatchRegistation = () => {
                       </div>
                       {/* Session Select */}
                       <div className="mb-2">
-                        <label>Select an Option</label>
+                        <label>Select an Session</label>
                         <select className="form-control" id="selectMenu" name="selectOption" {...register("session", { required: true })}>
-                          <option value="">Open this select menu</option>
+                          <option value="">Open this select session</option>
                           <option value="2019-2020">2019-2020</option>
                           <option value="2020-2021">2020-2021</option>
                           <option value="2021-2022">2021-2022</option>
