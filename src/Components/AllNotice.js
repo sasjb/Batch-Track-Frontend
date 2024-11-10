@@ -8,14 +8,14 @@ const AllNotice = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null); // State to manage error messages
 
-  // Fetch notices from the API
+  
   useEffect(() => {
     const fetchNotices = async () => {
       setIsLoading(true);
       try {
         const response = await axios.get(noticeApi);
         console.log("Notices fetched:", response.data);
-        // Ensure response data is an array before setting it to state
+       
         if (Array.isArray(response.data)) {
           setNotices(response.data);
         } else {
@@ -32,7 +32,7 @@ const AllNotice = () => {
     fetchNotices();
   }, []);
 
-  // Delete notice function
+ 
   const handleDelete = async (id) => {
     setIsLoading(true);
     try {
@@ -51,15 +51,15 @@ const AllNotice = () => {
   };
 
   if (isLoading) {
-    return <h1>Loading...</h1>; // Show loading state
+    return <h1>Loading...</h1>; 
   }
 
   if (error) {
-    return <p>Error: {error}</p>; // Show error message if any
+    return <p>Error: {error}</p>; 
   }
 
   if (notices.length === 0) {
-    return <h1>No notices found</h1>; // Message for no notices
+    return <h1>No notices found</h1>; 
   }
 
   return (
