@@ -9,7 +9,8 @@ function CourseSearch() {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:5000/courses/${courseCode}`);
+      const response = await axios.get(`http://localhost:5000/api/course/courses/${courseCode}`);
+      console.log(response.data); // Check if the data structure matches
       if (response.data) {
         setCourse(response.data);
         setError(''); // Clear any previous error
@@ -18,10 +19,12 @@ function CourseSearch() {
         setError('Course not found');
       }
     } catch (err) {
+      console.error(err); // Log any error
       setCourse(null);
       setError('Course not found');
     }
   };
+  
 
   return (
     <div className="container mt-4">
