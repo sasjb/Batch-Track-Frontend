@@ -6,12 +6,16 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Update from './Componets/Update';
 import UpdateForm from './Componets/UpdateForm';
+import CourseDetails from './Componets/CourseDetails';
+import CourseSearch from './Componets/CourseSearch';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <UpdateForm/>
+    {/* <UpdateForm/> */}
+    <CourseSearch/>
+    {/* <CourseDetails/> */}
   </React.StrictMode>
 );
 
