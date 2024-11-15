@@ -9,10 +9,13 @@ function CourseSearch() {
 
   const handleSearch = async () => {
     try {
+      console.log("hello");
+      console.log(courseCode);
       const response = await axios.get(`http://localhost:5000/api/course/courses/${courseCode}`);
-      console.log(response.data); // Check if the data structure matches
+      console.log(response.data.courses[0]); // Check if the data structure matches
       if (response.data) {
-        setCourse(response.data);
+        setCourse(response.data.courses[0]);
+
         setError(''); // Clear any previous error
       } else {
         setCourse(null);
@@ -47,9 +50,10 @@ function CourseSearch() {
           {course && (
             <div className="mt-3">
               <h4>Course Details</h4>
-              <p><strong>Course Code:</strong> {course.code}</p>
-              <p><strong>Course Name:</strong> {course.name}</p>
+              <p><strong>Course Code:</strong> {course.courseCode}</p>
+              <p><strong>Course Name:</strong> {course.courseName}</p>
               <p><strong>Description:</strong> {course.description}</p>
+              <p><strong>Credits:</strong> {course.credits}</p>
               {/* Add more course details as needed */}
             </div>
           )}
