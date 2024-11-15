@@ -10,6 +10,8 @@ function NavBar(props) {
                 <Nav className="nav">
                     <Nav.Link><Link to="/" >Add User</Link></Nav.Link>
                     <Nav.Link><Link to="/userList" >User List</Link></Nav.Link>
+                    <Nav.Link><Link to="/addNotice" >Add Notice</Link></Nav.Link>
+                    <Nav.Link><Link to="/allNotice" >All Notice</Link></Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>

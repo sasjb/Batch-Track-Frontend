@@ -9,6 +9,8 @@ import UserList from './Componets/UserList';
 import {Route, Routes} from "react-router-dom";
 import NavBar from "./Componets/NavBar";
 import Toast from "./Componets/Toast";
+import AddNotice from "./Componets/Notice/AddNotice";
+import AllNotice from "./Componets/Notice/AllNotice";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <Routes>
           <Route path="/" element={<AddUser/>} />
           <Route path="/userList" element={<UserList/>} />
+          <Route path="/addNotice" element={<AddNotice/>} />
+          <Route path="/allNotice" element={<AllNotice/>} />
       </Routes>
        <Toast/>
    </Fragment>
