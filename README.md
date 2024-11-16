@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Batch Track - React Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+**Batch Track** is a web application designed to manage and track various batch operations for educational institutions. It allows administrators and users to interact with batches, register new batches, manage courses, and send department notices.
 
-## Available Scripts
+This frontend is built with React and communicates with the backend (Node.js) for managing data. The application provides the following features:
 
-In the project directory, you can run:
+- **Validate a Batch for Registration**
+- **Register a New Batch by CR**
+- **Login to a Registered Batch**
+- **Add Semester**
+- **Add Course**
+- **Add Course Resources**
+- **View Course Details**
+- **Search Batch**
+- **Send Department Notice**
+- **Send Notices for Batch Updates**
+- **Edit User Profile Information**
 
-### `npm start`
+## Features
+- **Batch Registration**: Users can validate and register a new batch by CR.
+- **Login and Authentication**: Registered batches can log in to access their details.
+- **Course Management**: Add new semesters, courses, and associated resources.
+- **Notices**: Departments can send important notices and updates to batches.
+- **Profile Management**: Users can edit their profile information to keep details up-to-date.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To get started with the Batch Track frontend, follow the steps below to install the required dependencies and run the development environment locally.
 
-### `npm test`
+### Prerequisites
+Ensure you have the following installed on your local machine:
+- [Node.js](https://nodejs.org/) (version 14.x or higher)
+- [npm](https://www.npmjs.com/) (Node package manager)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Clone the Repository
 
-### `npm run build`
+First, clone the repository to your local machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+git clone [https://github.com/your-username/batch-track-frontend.git](https://github.com/sasjb/Batch-Track-Frontend)
+cd batch-track-frontend
+```
+## Install dependency
+```npm install```
+## Run project
+```npm start```
+## Build project
+```npm run build```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Explanation of Key Sections
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Overview**: A brief introduction to the project, listing its core features.
+2. **Installation**: Step-by-step guide to install dependencies and start the app locally.
+3. **Project Structure**: Breakdown of the folder structure in the frontend project.
+4. **Features in Detail**: Description of the core features of the Batch Track app.
+5. **Contributing**: Instructions for other developers on how to contribute to the project.
+6. **License**: Information about the project's licensing (MIT in this case, but adjust if necessary).
 
-### `npm run eject`
+This `README.md` provides all the necessary information to get started with the project, including setup and contribution guidelines. Adjust it as needed to fit your specific project structure and deployment methods!
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
